@@ -1,0 +1,36 @@
+class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+        def mergeTwoLists(list1, list2):
+            # check if either of the list is empty
+            if not list1 or not list2:
+                return list1 or list2
+        
+            elif list1.val<list2.val:
+                temp = list1
+                temp.next = mergeTwoLists(list1.next,list2)
+                return temp
+            else:
+                temp = list2
+                temp.next = mergeTwoLists(list1,list2.next)
+                return temp
+        def split(head):
+        
+            slow = head
+            fast = head
+            while fast and fast.next:
+                slow = slow.next
+                fast = fast.next.next
+        
+            curr = head
+            while curr.next!=slow:  # optimize this
+                curr = curr.next
+            curr.next  = None
+            return head,slow
+
+        def mergesort(head):
+            if not head: return
+            if not head.next: return head
+            h1,h2 = split(head)
+            return mergeTwoLists(mergesort(h1),mergesort(h2))
+        return mergesort(head)

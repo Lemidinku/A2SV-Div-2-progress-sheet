@@ -1,0 +1,22 @@
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        if len(nums)==1: return 1
+        i = 0
+        j = 1
+        count =1
+        while j<len(nums):
+            if nums[i]==nums[j]:
+                nums[j]= "_"
+                j +=1
+            else:
+                count +=1
+                i= j
+                j +=1
+        holder = 0
+        seeker = 0
+        while seeker < len(nums):
+            if nums[seeker] != "_":
+                nums[seeker], nums[holder] = nums[holder], nums[seeker]
+                holder += 1
+            seeker += 1
+        return count

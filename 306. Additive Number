@@ -1,0 +1,23 @@
+class Solution:
+    def isAdditiveNumber(self, num: str) -> bool:
+        def backtrack(n1, n2, ind):
+            if n2[0]=="0" and len(n2)>1: return False
+            if ind >= len(num): return True
+
+
+            for i in range(ind, len(num)):
+                val = num[ind:i + 1]
+                if int(n1) + int(n2) == int(val) and backtrack(n2, val, i + 1):
+                    return True
+            return False
+
+
+
+        for i in range(len(num) - 2):
+            num1 = num[:i + 1]
+            if num1[0]=="0" and len(num1)>1: continue
+            for j in range(i + 1, len(num) - 1):
+                num2 = num[i + 1:j + 1]
+                if backtrack(num1, num2, j + 1):
+                    return True
+        return False

@@ -1,0 +1,15 @@
+class Solution:
+    def totalFruit(self, s: List[int]) -> int:
+        table = {}
+        max_len = 0
+        l=0
+        for r in range(len(s)):
+            if s[r] in table: table[s[r]]+=1
+            else: table[s[r]]=1
+            while len(table)>2:
+                if table[s[l]]>1: table[s[l]]-=1
+                else: del table[s[l]]
+                l+=1
+            
+            max_len = max(max_len,r-l+1)
+        return max_len

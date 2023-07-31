@@ -1,0 +1,9 @@
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        if len(nums)==k: return sum(nums)/k
+        max_sum=summ = sum(nums[:k])
+        for i in range(len(nums)-k):
+            summ -= nums[i]
+            summ += nums[i+k]
+            max_sum = max(max_sum,summ)
+        return max_sum/k

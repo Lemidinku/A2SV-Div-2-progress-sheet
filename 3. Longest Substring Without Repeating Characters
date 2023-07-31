@@ -1,0 +1,18 @@
+from collections import defaultdict
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        table = defaultdict(int)
+        max_len = 0
+        l=0
+        r=0
+        while r<len(s):
+            if table[s[r]]>0:
+                table[s[l]]-=1
+                l+=1
+            else:
+                table[s[r]] +=1
+                r+=1
+                max_len = max(max_len,r-l)
+
+        
+        return max_len

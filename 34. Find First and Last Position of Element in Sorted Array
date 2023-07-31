@@ -1,0 +1,30 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        def first_occur(nums, target):
+            left = 0
+            right = len(nums) - 1
+            while left <= right:
+                mid = left + (right - left) // 2
+                if (mid == 0 or nums[mid - 1] != target) and nums[mid] == target:
+                    return mid
+                if nums[mid] >= target:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+
+            return -1
+
+        def last_occur(nums, target):
+            left = 0
+            right = len(nums) - 1
+            while left <= right:
+                mid = left + (right - left) // 2
+                if (mid ==len(nums)-1 or nums[mid + 1] != target) and nums[mid] == target:
+                    return mid
+                if nums[mid] > target:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+
+            return -1
+        return first_occur(nums,target),last_occur(nums,target)

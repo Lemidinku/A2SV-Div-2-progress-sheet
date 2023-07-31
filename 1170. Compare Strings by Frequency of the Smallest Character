@@ -1,0 +1,28 @@
+from collections import Counter
+class Solution:
+    def numSmallerByFrequency(self, queries: List[str], words: List[str]) -> List[int]:
+        def get_frequency(word):
+            table = Counter(word)
+            least_letter = sorted(table)[0]
+            return table[least_letter]
+        def right_insert(nums,target):
+            left = 0
+            right = len(nums) - 1
+
+            while left <= right:
+                mid = left + (right-left)//2
+                print(mid)
+                if nums[mid] > target:
+                    right = mid - 1
+                else: left = mid + 1
+            return left
+
+        for i in range(len(words)):
+            words[i]= get_frequency(words[i])
+        words.sort()
+        
+        for i in range(len(queries)):
+            val = get_frequency(queries[i])
+            print(val)
+            queries[i]=len(words)-right_insert(words,val)
+        return queries

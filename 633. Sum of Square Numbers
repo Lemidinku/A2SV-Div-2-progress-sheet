@@ -1,0 +1,13 @@
+import math
+class Solution:
+    def judgeSquareSum(self, c: int) -> bool:
+        l=0
+        r = math.ceil(math.sqrt(c))
+        while l<=r:
+            sum_square = l**2+r**2
+            if sum_square == c:
+                return True
+            elif sum_square>c:
+                r-=1
+            else: l+=1
+        return False

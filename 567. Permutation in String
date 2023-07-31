@@ -1,0 +1,22 @@
+from collections import Counter
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        l = 0
+        word1 = Counter(s1)
+        table = {}
+        for r in range(len(s2)):
+            if s2[r] in word1:
+                if s2[r] in table: table[s2[r]]+=1
+                else: table[s2[r]]=1
+
+                while table[s2[r]]>word1[s2[r]]:
+                    table[s2[l]]-=1
+                    l+=1
+
+            else:
+                l=r+1
+                table = {}
+            if table==word1:return True
+        return False
+
+            

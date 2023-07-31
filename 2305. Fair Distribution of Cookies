@@ -1,0 +1,15 @@
+class Solution:
+    def distributeCookies(self, cookies: List[int], k: int) -> int:
+        if len(cookies)==k: return max(cookies)
+        minn = []
+        def backtrack(idx,vals):
+            if idx >= len(cookies):
+                minn.append(max(vals))
+                return
+            for i in range(k):
+                vals[i]+=cookies[idx]
+                backtrack(idx+1,vals)
+                vals[i]-=cookies[idx]
+        backtrack(0,[0]*k)
+        return min(minn)
+                

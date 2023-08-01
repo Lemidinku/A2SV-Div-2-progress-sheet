@@ -1,0 +1,18 @@
+#User function Template for python3
+
+class Solution: 
+    def select(self, nums, i):
+        # code here 
+        least = i
+        for j in range(i, len(nums)):
+            if nums[least] > nums[j]:
+                least = j
+        return least
+    
+    def selectionSort(self, nums,n):
+        #code here
+        for i in range(n):
+            min_idx = self.select(nums,i)
+            nums[i], nums[min_idx] = nums[min_idx], nums[i]
+        return nums
+

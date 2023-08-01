@@ -1,0 +1,9 @@
+from collections import Counter
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        c= Counter(s)
+        lis = sorted(list(c), key=lambda x:-c[x])
+        st = ""
+        for letter in lis:
+            st += letter*c[letter]
+        return st

@@ -1,0 +1,10 @@
+class Solution:
+    def largestNumber(self, nums: List[int]) -> str:
+        nums = list(map(str, nums))
+        for i in range(len(nums)-1):
+            for j in range(i+1,len(nums)):
+                if nums[i]+nums[j] < nums[j]+nums[i]: # greedy here
+                    nums[i], nums[j] = nums[j], nums[i]
+        if list(set(nums)) == ["0"]:
+            return "0"
+        return "".join(nums)

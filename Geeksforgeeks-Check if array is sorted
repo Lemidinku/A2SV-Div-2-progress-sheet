@@ -1,0 +1,12 @@
+
+class Solution:
+    def arraySortedOrNot(self, arr, n):
+        # code here
+        if n<2: return True
+        i=0
+        j=1
+        while j<n:
+            if arr[j]<arr[i]: return False
+            i+=1
+            j+=1
+        return True

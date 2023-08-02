@@ -1,0 +1,31 @@
+class TopVotedCandidate:
+
+    def __init__(self, persons: List[int], times: List[int]):  
+        self.times = times     
+        self.winner = 0
+        self.winner_at_t = {}
+        self.candidates = {0:0}
+        for person,time in zip(persons,self.times):
+            if person in self.candidates: self.candidates[person]+=1
+            else: self.candidates[person]=1
+
+            if self.candidates[person]>=self.candidates[self.winner]:
+                self.winner = person
+            self.winner_at_t[time] = self.winner
+    def q(self, t: int) -> int:
+        def insert_pos(nums,target):
+            left = 0
+            right = len(nums) - 1
+            while left <= right:
+                mid = left + (right-left)//2
+                if nums[mid]==target:
+                    return target
+                elif (mid==len(nums)-1 or nums[mid+1]>target) and nums[mid] > target:
+                    right = mid - 1
+                else: left = mid + 1
+            return nums[right]
+
+        time = insert_pos(self.times,t)
+  
+        return self.winner_at_t[time]
+        

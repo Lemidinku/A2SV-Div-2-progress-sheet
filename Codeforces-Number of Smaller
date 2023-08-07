@@ -1,0 +1,16 @@
+n,m = map(int, input().split())
+arr1 = list(map(int,input().split()))
+arr2 = list(map(int,input().split()))
+
+i=j=0
+lessers = []
+while j<m:
+    if i>n-1 or arr1[i]>=arr2[j]:
+        lessers.append(i)
+        j+=1
+    else:
+        i+=1
+
+
+
+print(*lessers)
